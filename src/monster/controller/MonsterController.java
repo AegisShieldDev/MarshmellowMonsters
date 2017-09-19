@@ -2,9 +2,17 @@ package monster.controller;
 
 import monster.model.MarshmellowMonster;
 import java.util.Scanner;
+import monster.view.MonsterDisplay;
 
 public class MonsterController
 {
+	private MonsterDisplay popup;
+	
+	public MonsterController()
+	{
+		popup = new MonsterDisplay();
+	}
+	
 	public void start()
 	{
 		MarshmellowMonster basic = new MarshmellowMonster();
@@ -71,11 +79,11 @@ public class MonsterController
 		{
 			System.out.println("Not hungry? So sad");
 		}
-		else if(armEat == 0)
+		else if(armEat < 0)
 		{
 			System.out.println("Math must be hard for you");
 		}
-		else if(armEat - currentMonster.getArms() < 0)
+		else if(armEat > currentMonster.getArms())
 		{
 			System.out.println("you're not allowed to eat more then exists on me");
 		}
@@ -94,11 +102,11 @@ public class MonsterController
 		{
 			System.out.println("Not hungry? So sad");
 		}
-		else if(eyeEat == 0)
+		else if(eyeEat < 0)
 		{
 			System.out.println("Math must be hard for you");
 		}
-		else if(eyeEat - currentMonster.getEyeCount() < 0)
+		else if(eyeEat > currentMonster.getEyeCount())
 		{
 			System.out.println("you're not allowed to eat more then exists on me");
 		}
@@ -108,6 +116,8 @@ public class MonsterController
 			System.out.println("Ok, now I have this many eyes: " + currentMonster.getEyeCount());
 		}
 		
+		popup.displayText("Hi there, ready to play?");
+		String answer = popup.getResponce("What is the air speed of a coconut laden swallow?");
 		myScanner.close();
 	}
 }
