@@ -64,7 +64,7 @@ public class MonsterController
 		
 		
 		//arms
-		System.out.println("How many arms are you interested in eating? I have " + currentMonster.getArms());
+		System.out.println("How many arms are you interested in eating? I have " + currentMonster.getArms() + " arms");
 		int armEat = myScanner.nextInt();
 		
 		if(armEat == 0) 
@@ -82,7 +82,7 @@ public class MonsterController
 		else
 		{
 			currentMonster.setArmCount(currentMonster.getArms() - armEat);
-			System.out.println("Ok, now I have this many arms " + currentMonster.getArms());
+			System.out.println("Ok, now I have this many arms: " + currentMonster.getArms());
 		}
 		
 		
@@ -105,7 +105,7 @@ public class MonsterController
 		else
 		{
 			currentMonster.setEyeCount(currentMonster.getEyeCount() - eyeEat);
-			System.out.println("Ok, now I have this many arms " + currentMonster.getEyeCount());
+			System.out.println("Ok, now I have this many eyes: " + currentMonster.getEyeCount());
 		}
 		
 		myScanner.close();
