@@ -16,43 +16,17 @@ public class MonsterController
 	public void start()
 	{
 		MarshmellowMonster basic = new MarshmellowMonster();
-		System.out.println(basic);
+//		System.out.println(basic);
+		popup.displayText(basic.toString());
 		MarshmellowMonster george = new MarshmellowMonster("GEORGE the GeOrgE",7,4,5.9, true);
-		System.out.println(george);
-		System.out.println("I am feeling hungry, I am going to eat George's face");
+//		System.out.println(george);
+		popup.displayText(george.toString());
+		popup.displayText("I am feeling hungry, I am going to eat George's face");
 		george.setEyeCount(george.getEyeCount()-3);
-		System.out.println(george);
-		System.out.println("I am feeling hungry, I am going to eat George's arms");
+		popup.displayText(george.toString());
+		popup.displayText("I am feeling hungry, I am going to eat George's arms");
 		george.setArmCount(george.getArms()-3);
-		System.out.println(george);
-		System.out.println("I am feeling hungry, I am going to eat George's tentacles");
-		george.setTentacleAmount(george.getTentacleAmount()-2.2);
-		System.out.println(george);
-		System.out.println("I am feeling hungry, I am going to eat George's face");
-		george.setEyeCount(george.getEyeCount()-2);
-		System.out.println(george);
-		System.out.println("I am feeling hungry, I am going to eat George's tentacles");
-		george.setTentacleAmount(george.getTentacleAmount()-2.2);
-		System.out.println(george);
-		System.out.println("I am feeling hungry, I am going to eat George's first Bloop");
-		System.out.println(george);
-		System.out.println("I am feeling hungry, I am going to eat George's face");
-		george.setEyeCount(george.getEyeCount()-2);
-		System.out.println(george);
-		System.out.println("I am feeling hungry, I am going to eat George's arm");
-		george.setArmCount(george.getArms()-1);
-		System.out.println(george);
-		System.out.println("I am feeling hungry, I am going to eat George's tentacles");
-		george.setTentacleAmount(george.getTentacleAmount()-1.5);
-		System.out.println(george);
-		System.out.println("I am feeling hungry, I am going to eat George's second Bloop, the last part of George");
-		george.setBloop(false);
-		System.out.println(george);
-		System.out.println("George is out of parts");
-		System.out.println("George is gone");
-		System.out.println("Goodbye, George");
-		System.out.println("");
-		System.out.println("");
+		popup.displayText(george.toString());
 		
 		george.setArmCount(5);
 		george.setBloop(true);
@@ -65,14 +39,23 @@ public class MonsterController
 	private void interactWithMonster(MarshmellowMonster currentMonster)
 	{
 		Scanner myScanner = new Scanner(System.in);
-		System.out.println(currentMonster.getName() + " is back! He grows stuff back. He wants to know how many eyes you want to eat, please type in how many");
-		int consumed = myScanner.nextInt();
+		int consumed = 0;
+		String responce = popup.getResponce(currentMonster.getName() + " is back! He grows stuff back. He wants to know how many eyes you want to eat, please type in how many");
+		
+		if(isValidInteger(responce))
+		{
+			consumed = Integer.parseInt(responce);
+		}
+		
+		//int consumed = myScanner.nextInt();
 		currentMonster.setEyeCount(currentMonster.getEyeCount() - consumed);
 		System.out.println(currentMonster);
 		
 		
+		
+		
 		//arms
-		System.out.println("How many arms are you interested in eating? I have " + currentMonster.getArms() + " arms");
+		popup.getResponce("How many arms are you interested in eating? I have " + currentMonster.getArms() + " arms");
 		int armEat = myScanner.nextInt();
 		
 		if(armEat == 0) 
@@ -119,5 +102,25 @@ public class MonsterController
 		popup.displayText("Hi there, ready to play?");
 		String answer = popup.getResponce("What is the air speed of a coconut laden swallow?");
 		myScanner.close();
+		
+		
+		
+	}
+	
+	private boolean isValidInteger(String sample)
+	{
+		boolean valid = false;
+	
+		try
+		{
+			Integer.parseInt(sample);
+			valid = true;
+		}
+		catch(NumberFormatException error)
+		{
+			popup.displayText("You need to input an int, " + sample + " is not valid.");
+		}
+		
+		return valid;
 	}
 }
