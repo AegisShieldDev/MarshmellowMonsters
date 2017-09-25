@@ -22,6 +22,8 @@ public class MarshmellowMonster
 		this.hasBloop = hasBloop;
 	}
 	
+	
+	//Getters, methods that get information from the object
 	public String getName()
 	{
 		return name;
@@ -42,6 +44,8 @@ public class MarshmellowMonster
 	{
 		return hasBloop;
 	}
+	
+	//Setters, methods that set values in the objects
 	public void setName(String name)
 	{
 		this.name = name;
@@ -62,6 +66,8 @@ public class MarshmellowMonster
 	{
 		this.hasBloop = hasBloop;
 	}
+	
+	//Default out of this class when .toString is called
 	public String toString()
 	{
 		String description = "I am a monster, my name is " + name + ", I have "+ eyeCount + " eyes and only ";

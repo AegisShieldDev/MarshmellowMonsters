@@ -4,10 +4,12 @@ import javax.swing.JOptionPane;
 
 public class MonsterDisplay
 {
+	//Opens a JOptionPane
 	public void displayText(String textToDisplay)
 	{
 		JOptionPane.showMessageDialog(null, textToDisplay);
 	}
+	//Opens a JOptionPane with a text box 
 	public String getResponce(String questionToDisplay)
 	{
 		String answer = "";

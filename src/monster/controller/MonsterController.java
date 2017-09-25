@@ -1,8 +1,8 @@
 package monster.controller;
 
 import monster.model.MarshmellowMonster;
-import java.util.Scanner;
 import monster.view.MonsterDisplay;
+//import java.util.Scanner;
 
 public class MonsterController
 {
@@ -14,99 +14,158 @@ public class MonsterController
 	}
 	
 	public void start()
-	{
-		MarshmellowMonster basic = new MarshmellowMonster();
-//		System.out.println(basic);
-		popup.displayText(basic.toString());
+	{	
+		//Create George, the monster
 		MarshmellowMonster george = new MarshmellowMonster("GEORGE the GeOrgE",7,4,5.9, true);
-//		System.out.println(george);
-		popup.displayText(george.toString());
-		popup.displayText("I am feeling hungry, I am going to eat George's face");
-		george.setEyeCount(george.getEyeCount()-3);
-		popup.displayText(george.toString());
-		popup.displayText("I am feeling hungry, I am going to eat George's arms");
-		george.setArmCount(george.getArms()-3);
-		popup.displayText(george.toString());
+		popup.displayText("George is a monster with " +george.getArms()+ " arms, "+ george.getEyeCount()+ " eyes, bloop=" + george.hasBloop() + ", and " + george.getTentacleAmount() + " tentacles");
 		
-		george.setArmCount(5);
-		george.setBloop(true);
-		george.setEyeCount(5);
-		george.setTentacleAmount(5);
 		
+		//Pass the monster into the interactWithMonster method
 		interactWithMonster(george);
 	}
 	
 	private void interactWithMonster(MarshmellowMonster currentMonster)
 	{
-		Scanner myScanner = new Scanner(System.in);
-		int consumed = 0;
-		String responce = popup.getResponce(currentMonster.getName() + " is back! He grows stuff back. He wants to know how many eyes you want to eat, please type in how many");
+		//Scanner myScanner = new Scanner(System.in);
+		//int consumed = myScanner.nextInt();
+		//int armEat = myScanner.nextInt();
+		//int eyeEat = myScanner.nextInt();
+		//myScanner.close();
 		
+		//Code that handles the eyes 1
+		int consumed = 0;
+		String responce = popup.getResponce(currentMonster.getName() + " George wants to know how many eyes you want to eat. He has " + currentMonster.getEyeCount()+ ", please type in how many");
+		
+		//Checks if user input is valid, passes error message if not
 		if(isValidInteger(responce))
 		{
 			consumed = Integer.parseInt(responce);
 		}
 		
-		//int consumed = myScanner.nextInt();
 		currentMonster.setEyeCount(currentMonster.getEyeCount() - consumed);
-		System.out.println(currentMonster);
+		popup.displayText("I now have " + currentMonster.getEyeCount() + " eyes.");
 		
+		//End code that handles the eyes 1
 		
+		//Code that handles the arms
+		int armEat = 0;
+		responce = popup.getResponce("How many arms are you interested in eating? I have " + currentMonster.getArms() + " arms");
 		
-		
-		//arms
-		popup.getResponce("How many arms are you interested in eating? I have " + currentMonster.getArms() + " arms");
-		int armEat = myScanner.nextInt();
+		//Checks if user input is valid, passes error message if not
+		if(isValidInteger(responce))
+		{
+			armEat = Integer.parseInt(responce);
+		}
 		
 		if(armEat == 0) 
 		{
-			System.out.println("Not hungry? So sad");
+			popup.displayText("Not hungry? So sad");
 		}
 		else if(armEat < 0)
 		{
-			System.out.println("Math must be hard for you");
+			popup.displayText("Math must be hard for you");
 		}
 		else if(armEat > currentMonster.getArms())
 		{
-			System.out.println("you're not allowed to eat more then exists on me");
+			popup.displayText("you're not allowed to eat more then exists on me");
 		}
 		else
 		{
 			currentMonster.setArmCount(currentMonster.getArms() - armEat);
-			System.out.println("Ok, now I have this many arms: " + currentMonster.getArms());
+			popup.displayText("Ok, now I have this many arms: " + currentMonster.getArms());
 		}
+		//End code that handles the arms
 		
+		//Code that handles the eyes 2
+		int eyeEat = 0;
+		responce = popup.getResponce("How many eyes are you interested in eating? I have " + currentMonster.getEyeCount());
 		
-		//eyes
-		System.out.println("How many eyes are you interested in eating? I have " + currentMonster.getEyeCount());
-		int eyeEat = myScanner.nextInt();
+		//Checks if user input is valid, passes error message if not
+		if(isValidInteger(responce))
+		{
+			eyeEat = Integer.parseInt(responce);
+		}
 		
 		if(eyeEat == 0) 
 		{
-			System.out.println("Not hungry? So sad");
+			popup.displayText("Not hungry for eyes? So sad");
 		}
 		else if(eyeEat < 0)
 		{
-			System.out.println("Math must be hard for you");
+			popup.displayText("Math must be hard for you");
 		}
 		else if(eyeEat > currentMonster.getEyeCount())
 		{
-			System.out.println("you're not allowed to eat more then exists on me");
+			popup.displayText("you're not allowed to eat more then exists on me");
 		}
 		else
 		{
 			currentMonster.setEyeCount(currentMonster.getEyeCount() - eyeEat);
-			System.out.println("Ok, now I have this many eyes: " + currentMonster.getEyeCount());
+			popup.displayText("Ok, now I have this many eyes: " + currentMonster.getEyeCount());
 		}
+		//End code that handles the eyes 2
 		
-		popup.displayText("Hi there, ready to play?");
-		String answer = popup.getResponce("What is the air speed of a coconut laden swallow?");
-		myScanner.close();
+		//Code that handles Tentacles
+		Double tentacleEat = 0.0;
+		responce = popup.getResponce("How many tentacles are you interested in eating? I have " + currentMonster.getTentacleAmount());
 		
+		//Checks if user input is valid, passes error message if not
+		if(isValidDouble(responce))
+		{
+			tentacleEat = Double.parseDouble(responce);
+		}
+		if(tentacleEat == 0) 
+		{
+			popup.displayText("Not hungry? So sad");
+		}
+		else if(tentacleEat < 0)
+		{
+			popup.displayText("Math must be hard for you");
+		}
+		else if(tentacleEat > currentMonster.getTentacleAmount())
+		{
+			popup.displayText("you're not allowed to eat more then exists on me");
+		}
+		else
+		{
+			currentMonster.setTentacleAmount(currentMonster.getTentacleAmount() - tentacleEat);
+			popup.displayText("Ok, now I have this many tentacles: " + currentMonster.getTentacleAmount());
+		}
+		//End code that handles the tentacles
 		
+		//Code that handles the Bloop
+		boolean bloopEat = false;
 		
+		if(currentMonster.hasBloop())
+		{
+			responce = popup.getResponce("Would you like to eat my bloop?");
+			
+			//Checks if user input is valid, passes error message if not
+			if(isValidBoolean(responce))
+			{
+				bloopEat = Boolean.parseBoolean(responce);
+			}
+			
+			if(bloopEat)
+			{
+				currentMonster.setBloop(false);
+				popup.displayText(currentMonster.getName() + " no longer has a bloop, it has been eaten.");
+			}
+			else
+			{
+				popup.displayText("You do not eat the monster's bloop.");
+			}
+		}
+		else
+		{
+			popup.displayText("This monster does not have a bloop");
+		}
+		//Ends code that handles the bloop
+		
+		System.exit(0);
 	}
 	
+	//Checks if an integer is valid, gives an error message if not
 	private boolean isValidInteger(String sample)
 	{
 		boolean valid = false;
@@ -118,7 +177,43 @@ public class MonsterController
 		}
 		catch(NumberFormatException error)
 		{
-			popup.displayText("You need to input an int, " + sample + " is not valid.");
+			popup.displayText("You need to input an int, " + sample + " is not a valid answer.");
+		}
+		
+		return valid;
+	}
+	
+	//checks if a double is valid, gives an error message if not
+	private boolean isValidDouble(String sampleDouble)
+	{
+		boolean valid = false;
+		
+		try
+		{
+			Double.parseDouble(sampleDouble);
+			valid = true;
+		}
+		catch(NumberFormatException error)
+		{
+			popup.displayText("You need to type in a double, " + sampleDouble + " is not a valid answer.");
+		}
+		
+		return valid;
+	}
+	
+	//checks if a boolean is valid, gives an error message if not
+	private boolean isValidBoolean(String sampleBoolean)
+	{
+		boolean valid = false;
+		
+		try
+		{
+			Boolean.parseBoolean(sampleBoolean);
+			valid = true;
+		}
+		catch(NumberFormatException error)
+		{
+			popup.displayText("You need to type in a boolean, " + sampleBoolean + " does not count");
 		}
 		
 		return valid;
