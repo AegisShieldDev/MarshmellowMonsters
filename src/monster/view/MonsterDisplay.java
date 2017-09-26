@@ -10,7 +10,7 @@ public class MonsterDisplay
 		JOptionPane.showMessageDialog(null, textToDisplay);
 	}
 	//Opens a JOptionPane with a text box 
-	public String getResponce(String questionToDisplay)
+	public String getResponse(String questionToDisplay)
 	{
 		String answer = "";
 		
