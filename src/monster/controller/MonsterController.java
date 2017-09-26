@@ -27,11 +27,6 @@ public class MonsterController
 	
 	private void interactWithMonster(MarshmellowMonster currentMonster)
 	{
-		//Scanner myScanner = new Scanner(System.in);
-		//int consumed = myScanner.nextInt();
-		//int armEat = myScanner.nextInt();
-		//int eyeEat = myScanner.nextInt();
-		//myScanner.close();
 		
 		//Code that handles the eyes 1       ////////////////////////////////////////////////////////////////////////////////////////////////////////
 		boolean toggle = true;
@@ -47,7 +42,7 @@ public class MonsterController
 		if((currentMonster.getEyeCount() - Integer.parseInt(response))<0)
 		{
 			toggle = false;
-			while(toggle == false)
+			while(!toggle)
 			{
 				popup.displayText("grr, type in a valid answer");
 				response = popup.getResponse("Type in an integer value less then or equal to " + currentMonster.getEyeCount());
@@ -82,7 +77,7 @@ public class MonsterController
 		if((currentMonster.getArms() - Integer.parseInt(response))<0)
 		{
 			toggle = false;
-			while(toggle == false)
+			while(!toggle)
 			{
 				popup.displayText("grr, type in a valid answer");
 				response = popup.getResponse("Type in an integer value less then or equal to " + currentMonster.getArms());
@@ -123,7 +118,7 @@ public class MonsterController
 		if((currentMonster.getEyeCount() - Integer.parseInt(response))<0)
 		{
 			toggle = false;
-			while(toggle == false)
+			while(!toggle)
 			{
 				popup.displayText("grr, type in a valid answer");
 				response = popup.getResponse("Type in an integer value less then or equal to " + currentMonster.getEyeCount());
