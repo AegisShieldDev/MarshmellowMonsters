@@ -15,6 +15,14 @@ public class MonsterController
 	
 	public void start()
 	{	
+	/*
+		int count = 0;
+		while(count < 10)
+		{
+			popup.displayText("Am I not the coolest??");
+			count += 2;
+		}
+		*/
 		//Create George, the monster
 		MarshmellowMonster george = new MarshmellowMonster("GEORGE the GeOrgE",7,4,5.9, true);
 		popup.displayText("George is a monster with " +george.getArms()+ " arms, "+ george.getEyeCount()+ " eyes, bloop=" + george.hasBloop() + ", and " + george.getTentacleAmount() + " tentacles");
