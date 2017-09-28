@@ -1,28 +1,53 @@
 package monster.controller;
 
 import monster.model.MarshmellowMonster;
+import java.util.List;
+import java.util.ArrayList;
 import monster.view.MonsterDisplay;
 //import java.util.Scanner;
 
 public class MonsterController
 {
 	private MonsterDisplay popup;
+	private List<MarshmellowMonster> monsterList;
 	
 	public MonsterController()
 	{
 		popup = new MonsterDisplay();
+		monsterList = new ArrayList<MarshmellowMonster>();
 	}
 	
 	public void start()
 	{	
-		
+		MarshmellowMonster basic = new MarshmellowMonster();
 		
 		//Create George, the monster
 		MarshmellowMonster george = new MarshmellowMonster("GEORGE the GeOrgE",7,4,5.9, true);
 		popup.displayText("George is a monster with " +george.getArms()+ " arms, "+ george.getEyeCount()+ " eyes, bloop=" + george.hasBloop() + ", and " + george.getTentacleAmount() + " tentacles");
 		
+		monsterList.add(george);
+		monsterList.add(basic);
+		useList();
+		
 		//Pass the monster into the interactWithMonster method
 		interactWithMonster(george);
+	}
+	
+	private void useList()
+	{
+		for (int index = 0; index < monsterList.size(); index++)
+		{
+			MarshmellowMonster currentMonster = monsterList.get(index);
+			popup.displayText(currentMonster.getName());
+			String updateName = popup.getResponse("What should my new name be?");
+			currentMonster.setName(updateName);
+			popup.displayText("My new name is " + currentMonster.getName());
+		}
+		
+		for (MarshmellowMonster current : monsterList)
+		{
+			popup.displayText("My name is " + current.getName());
+		}
 	}
 	
 	private void interactWithMonster(MarshmellowMonster currentMonster)
